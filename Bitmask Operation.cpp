@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+bool Knowbit(ll n,int i)
+{
+    return (n>>i)&1;
+}
+ll Setbit(ll n,int i)
+{
+    return n|(1<<i);
+}
+ll Resetbit(ll n,int i)
+{
+    return n&(~(1<<i));
+}
+ll flip(ll n,int i)
+{
+    return n^(1<<i);
+}
+bool isPowerOfTwo(int n)
+{
+    if(n==0)return 0;
+    return !(n&(n-1));
+}
+
+void solve()
+{
+
+}
+signed main()
+{
+    // #ifndef ONLINE_JUDGE
+    //     freopen("input.txt", "r", stdin);
+    //     freopen("output.txt", "w", stdout);
+    // #endif
+    fast;
+
+    int t = 1;
+    // cin >> t;
+    while (t--)
+    {
+        solve();
+        if (t)
+            cout << endl;
+    }
+}
+
