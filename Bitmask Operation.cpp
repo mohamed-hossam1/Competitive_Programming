@@ -25,27 +25,13 @@ bool isPowerOfTwo(int n)
 int countFoOnes(int n){
     return __builtin_popcount(n);
 }
+ and       or      xor 
+1 1 1    0 1 1    0 1 1
+1 0 0    0 0 0    0 0 0
+0 1 0    1 1 1    1 1 0
+0 0 0    1 0 1    1 0 1 
 
-
-void solve()
-{
-
-}
-signed main()
-{
-    // #ifndef ONLINE_JUDGE
-    //     freopen("input.txt", "r", stdin);
-    //     freopen("output.txt", "w", stdout);
-    // #endif
-    fast;
-
-    int t = 1;
-    // cin >> t;
-    while (t--)
-    {
-        solve();
-        if (t)
-            cout << endl;
-    }
-}
-
+a^b = c
+c^a = b
+bitset<32> a;
+a.count(); // count of ones
