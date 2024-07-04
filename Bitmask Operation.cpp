@@ -35,3 +35,4 @@ a^b = c
 c^a = b
 bitset<32> a;
 a.count(); // count of ones
+// find all subsets for any array by size ~ 20
