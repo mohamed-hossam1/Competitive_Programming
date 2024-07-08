@@ -98,6 +98,7 @@ mul (x % m * y % m) % m ;
 sub (((x % m - y % m) % m) + m) % m;
 div y = powermod(b,mod-2,mod);
      (x % m * y % m) % m ;
+negative (x%m)+m
 a ^ (mod - 1) % mod = 1
 
 
