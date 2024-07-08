@@ -75,6 +75,23 @@ vector<bool> sieve(int n){
     }
     return prime;
 }
+vector<bool> linearSieve(int N)
+{
+    vector<bool>isPrime(N,1);vector<int>primes;
+    isPrime[0]=isPrime[1]=0;
+    for(ll i=2;i<N;i++)
+    {
+        if(isPrime[i]) primes.push_back(i);
+        for(auto it:primes)
+        {
+            if(i*it>=N) break;
+            isPrime[i*it]=0;
+            if(i%it==0) break;
+        }
+    }
+    return isPrime;
+}
+
 //  mod 
 add (x % m + y % m) % m;
 mul (x % m * y % m) % m ;
