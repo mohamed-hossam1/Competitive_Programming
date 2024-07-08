@@ -60,3 +60,27 @@ int powermod(int a,int b,int mod){
     ret = ret*x*x;
     return ret%mod;
 }
+vector<bool> sieve(int n){
+    vector<bool> prime(n,1);
+    prime[0]=prime[1]=0;
+    for (int i = 2; i*i < n; i++)
+    {
+        if(prime[i]){
+            for (int j = i*i; j < n; j+=i)
+            {
+                prime[j]=0;
+            }
+            
+        }
+    }
+    return prime;
+}
+//  mod 
+add (x % m + y % m) % m;
+mul (x % m * y % m) % m ;
+sub (((x % m - y % m) % m) + m) % m;
+div y = powermod(b,mod-2,mod);
+     (x % m * y % m) % m ;
+a ^ (mod - 1) % mod = 1
+
+
