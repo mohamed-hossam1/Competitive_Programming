@@ -20,7 +20,7 @@ int lcm(int a,int b){
     return a*b/gcd(a,b);
 }
 
-bool isprime(int n){
+bool isprime(int n){//sqrt(n)
     if(n==1)return 0;
     if(n!=2&&n%2==0) return 0;
     for (int i = 3; i*i <= n; i+=2)
@@ -41,7 +41,7 @@ vector<int> primeFactors(int n){//sqrt(n)
     if(n>1)v.push_back(n);
     return v;
 }
-int power(int a,int b){
+int power(int a,int b){//log(n)
     if(b==0)return 1;
     if(b==1)return a;
     
@@ -50,7 +50,7 @@ int power(int a,int b){
     int x = power(a,b/2);
     return ret*x*x;
 }
-int powermod(int a,int b,int mod){
+int powermod(int a,int b,int mod){//log(n)
     if(b==0)return 1;
     if(b==1)return a;
     
@@ -60,7 +60,7 @@ int powermod(int a,int b,int mod){
     ret = ret*x*x;
     return ret%mod;
 }
-vector<bool> sieve(int n){
+vector<bool> sieve(int n){//o(n)
     vector<bool> prime(n,1);
     prime[0]=prime[1]=0;
     for (int i = 2; i*i < n; i++)
@@ -75,7 +75,7 @@ vector<bool> sieve(int n){
     }
     return prime;
 }
-vector<bool> linearSieve(int N)
+vector<bool> linearSieve(int N)//o(n)
 {
     vector<bool>isPrime(N,1);vector<int>primes;
     isPrime[0]=isPrime[1]=0;
