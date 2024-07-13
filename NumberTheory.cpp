@@ -17,7 +17,7 @@ int gcd(int a,int b){ //log(n)
     return gcd(a%b,b);
 }
 int lcm(int a,int b){
-    return a*b/gcd(a,b);
+    return a/gcd(a,b)*b;
 }
 
 bool isprime(int n){//sqrt(n)
