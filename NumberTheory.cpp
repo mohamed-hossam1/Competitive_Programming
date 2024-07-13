@@ -92,6 +92,20 @@ vector<bool> linearSieve(int N)//o(n)
     return isPrime;
 }
 
+pair<int,int> euclid(int a,int b,int& x,int& y){  //a*x+b*y=gcd(a,b) return x,y
+    if(b==0){
+        x=1;
+        y=0;
+        
+        return {x,y};
+    }
+    int x1,y1;
+    euclid(b,a%b,x1,y1);
+    x=y1;
+    y=x1-y1*(a/b);
+    return {x,y};
+}
+
 //  mod 
 add (x % m + y % m) % m;
 mul (x % m * y % m) % m ;
