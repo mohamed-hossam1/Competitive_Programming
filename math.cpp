@@ -22,5 +22,16 @@ int find_r(int a1,int a2){
 }
 sum all of numbers to n = n*(n+1)/2
 sum all of even numders to n = (n/2)*((n/2)+1)/2
-the number have 3 defrunt divizer if squr(number) ==int and 1,n 
-so if we have the prime factorition the number is will br prime
+
+the number has odd distinct divisors if sqrt(number) == (int) sqrt(number)
+16 
+sqrt(16)=4
+1 2 4 8 16
+
+the number has three distinct divisors if sqrt(number) == (int) sqrt(number)
+and sqrt(number) = prime number 
+49 
+sqrt(49) 7 
+so divisors of 49 = 1 7 49
+
+
