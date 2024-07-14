@@ -22,3 +22,5 @@ int find_r(int a1,int a2){
 }
 sum all of numbers to n = n*(n+1)/2
 sum all of even numders to n = (n/2)*((n/2)+1)/2
+the number have 3 defrunt divizer if squr(number) ==int and 1,n 
+so if we have the prime factorition the number is will br prime
