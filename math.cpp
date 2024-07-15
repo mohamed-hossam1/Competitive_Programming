@@ -20,6 +20,8 @@ int find_an(int a1,int n,int d){
 int find_r(int a1,int a2){
   return a2/a1;
 }
+
+
 sum all of numbers to n = n*(n+1)/2
 sum all of even numders to n = (n/2)*((n/2)+1)/2
 
@@ -27,6 +29,14 @@ the number has odd distinct divisors if sqrt(number) == (int) sqrt(number)
 16 
 sqrt(16)=4
 1 2 4 8 16
+
+
+the number has three distinct divisors if sqrt(number) == (int) sqrt(number)
+and sqrt(number) = prime number 
+49 
+sqrt(49) 7 
+so divisors of 49 = 1 7 49
+
 
 
 
@@ -40,12 +50,4 @@ long long int_sqrt (long long x) {
   }
   return ans;
 }
-
-
-the number has three distinct divisors if sqrt(number) == (int) sqrt(number)
-and sqrt(number) = prime number 
-49 
-sqrt(49) 7 
-so divisors of 49 = 1 7 49
-
 
