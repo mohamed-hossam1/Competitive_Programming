@@ -28,6 +28,20 @@ the number has odd distinct divisors if sqrt(number) == (int) sqrt(number)
 sqrt(16)=4
 1 2 4 8 16
 
+
+
+
+long long int_sqrt (long long x) {
+  long long ans = 0;
+  for (ll k = 1LL << 30; k != 0; k /= 2) {
+    if ((ans + k) * (ans + k) <= x) {
+      ans += k;
+    }
+  }
+  return ans;
+}
+
+
 the number has three distinct divisors if sqrt(number) == (int) sqrt(number)
 and sqrt(number) = prime number 
 49 
