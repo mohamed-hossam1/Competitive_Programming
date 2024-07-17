@@ -22,10 +22,15 @@ int find_r(int a1,int a2){
 }
 
 
-sum all of numbers to n = n*(n+1)/2
-sum all of even numders to n = (n/2)*((n/2)+1)/2
+int sum_all_toN (int n) return n = n*(n+1)/2;
+sum_allEven_toN (int n) return  n = (n/2)*((n/2)+1)/2
 
+int comp_double(double x, double y) {
+        if(fabs(x-y)<=1e-9)return 0;
+        return x<y?-1:1;
+}
 
+k-th_is_not_divisible_by_n(int n,int k) return k + (k - 1) / (n - 1); // n = 3 k = 7 --numbers not divisible by 3 1,2,4,5,7,8,*10*,11,13… 
 
 long long int_sqrt (long long x) {
   long long ans = 0;
