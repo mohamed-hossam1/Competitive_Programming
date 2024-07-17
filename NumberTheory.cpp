@@ -10,7 +10,14 @@ vector<int> Divisors(int n){//sqrt(n)
     }
     return v;
 }
-
+vector<int> SumDivisorsForAllNumbers(){
+    vector<ll>divsors(1e6+10,0);
+    for (int i = 1; i <= (int)1e6; i++) {
+		for (int k = i; k <= (int)1e6; k += i)
+			divsors[k]++;
+	}
+    return divsors;
+}
 int gcd(int a,int b){ //log(n)
     if(b>a) swap(a,b);
     if(b==0) return a;
