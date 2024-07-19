@@ -11,7 +11,6 @@ vector<int> Divisors(int n){//sqrt(n)
     }
     return v;
 }
-*----------------------------------------------------------------------*
 vector<int> SumDivisorsForAllNumbers(){
     vector<ll>divsors(1e6+10,0);
     for (int i = 1; i <= (int)1e6; i++) {
@@ -20,7 +19,6 @@ vector<int> SumDivisorsForAllNumbers(){
 	}
     return divsors;
 }
-*----------------------------------------------------------------------*
 vector<int> primeFactors(int n){//sqrt(n)
     vector<int> v;
     for (int i = 2; i*i <= n; i++)
@@ -39,7 +37,6 @@ int gcd(int a,int b){ //log(n)
     if(b==0) return a;
     return gcd(a%b,b);
 }
-*----------------------------------------------------------------------*
 int lcm(int a,int b){
     return a/gcd(a,b)*b;
 }
@@ -53,7 +50,6 @@ bool isprime(int n){//sqrt(n)
     }
     return 1;
 }
-*----------------------------------------------------------------------*
 vector<bool> sieve(int n){//o(n)
     vector<bool> prime(n,1);
     prime[0]=prime[1]=0;
@@ -69,7 +65,6 @@ vector<bool> sieve(int n){//o(n)
     }
     return prime;
 }
-*----------------------------------------------------------------------*
 vector<bool> linearSieve(int N)//o(n)
 {
     vector<bool>isPrime(N,1);vector<int>primes;
@@ -96,7 +91,6 @@ int power(int a,int b){//log(n)
     int x = power(a,b/2);
     return ret*x*x;
 }
-*----------------------------------------------------------------------*
 int powermod(int a,int b,int mod){//log(n)
     if(b==0)return 1;
     if(b==1)return a;
@@ -121,7 +115,6 @@ int phi(int n) { //sum of coprime numbers from 1 to n //sqrt(n)
         result -= result / n;
     return result;
 }
-*----------------------------------------------------------------------*
 void phi_1_to_n(int n) { //nlog(log(n))
     vector<int> phi(n + 1);
     for (int i = 0; i <= n; i++)
