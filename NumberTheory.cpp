@@ -17,13 +17,40 @@ vector<int> SumDivisorsForAllNumbers(){
     return divsors;
 }
 *----------------------------------------------------------------------*
-vector<int> primeFactors(int n){//sqrt(n)
+vector<int> primeFactors(int n) {
     vector<int> v;
-    for (int i = 2; i*i <= n; i++)
-        while (n%i==0){ v.push_back(i); n/=i; }
-    if(n>1)v.push_back(n);
+    while (n % 2 == 0) {
+        v.push_back(2);
+        n /= 2;
+    }
+    for (int i = 3; i * i <= n; i += 2) {
+        while (n % i == 0) {
+            v.push_back(i);
+            n /= i;
+        }
+    }
+    if (n > 2) v.push_back(n);
     return v;
 }
+*----------------------------------------------------------------------*
+vector<int> primeCount(int maxN) {
+    vector<int> count(maxN + 1, 0);
+    vector<bool> prime(maxN + 1, true);
+    prime[0] = prime[1] = false;
+    for (int p = 2; p <= maxN; ++p) {
+        if (prime[p]) {
+            for (int i = p; i <= maxN; i += p) {
+                prime[i] = false;
+                count[i] += 1;
+            }
+        }
+    }
+    for (int i = 1; i <= maxN; ++i) {
+        count[i] += count[i - 1];
+    }
+    return count;
+}
+
 *----------------------------------------------------------------------*
 int gcd(int a,int b){
     if(b>a) swap(a,b);
@@ -68,6 +95,27 @@ vector<bool> linearSieve(int N)//o(n)
         }
     }
     return isPrime;
+}
+
+vector<vector<int>> primeCombinations(int target) {
+    vector<int> primes = primeCount(target);
+    vector<vector<int>> result;
+    vector<int> combination;
+    function<void(int, int)> dfs = [&](int start, int sum) {
+        if (sum == target) {
+            result.push_back(combination);
+            return;
+        }
+        for (int i = start; i < primes.size(); ++i) {
+            if (sum + primes[i] <= target) {
+                combination.push_back(primes[i]);
+                dfs(i, sum + primes[i]);
+                combination.pop_back();
+            }
+        }
+    };
+    dfs(0, 0);
+    return result;
 }
 *----------------------------------------------------------------------*
 int power(int a,int b){
