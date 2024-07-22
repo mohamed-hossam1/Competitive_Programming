@@ -44,6 +44,10 @@ triangle
 double triangle_area(Point a, Point b, Point c) {
     return fabs(cross_product(Point(b.x - a.x, b.y - a.y), Point(c.x - a.x, c.y - a.y)) / 2.0);
 }
+double areaOfTriangle(double a, double b, double c) {
+    double s = (a + b + c) / 2;
+    return sqrt(s * (s - a) * (s - b) * (s - c));
+}
 double angleFromSides(double a, double b, double c) {
     return acos((pow(b, 2) + pow(c, 2) - pow(a, 2)) / (2 * b * c));
 }
