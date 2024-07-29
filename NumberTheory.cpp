@@ -171,6 +171,29 @@ pair<int,int> euclid(int a,int b,int& x,int& y){  //a*x+b*y=gcd(a,b) return x,y 
     return {x,y};
 }
 *----------------------------------------------------------------------*
+int gcdExtended(int a, int b, int* x, int* y)
+{
+    if (a == 0) {
+        *x = 0, *y = 1;
+        return b;
+    }
+    int x1, y1;
+    int gcd = gcdExtended(b % a, a, &x1, &y1);
+    *x = y1 - (b / a) * x1,*y = x1;
+    return gcd;
+}
+void modInverse(int A, int M)
+{
+    int x, y;
+    int g = gcdExtended(A, M, &x, &y);
+    if (g != 1)
+        cout << "Inverse doesn't exist";
+    else {
+        int res = (x % M + M) % M;
+        cout << res;
+    }
+}
+*----------------------------------------------------------------------*
 int add(int x,int y,int mid) {return(x % mod + y % mod) % mod;}
 int mul(int x,int y,int mid) {return(x % mod * y % mod) % mod;}
 int sub(int x,int y,int mid) {return(((x % mod - y % mod) % mod) + mod) % mod;}
