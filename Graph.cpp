@@ -1,3 +1,8 @@
+int dx[] = {0, 1, 0, -1};
+int dy[] = {1, 0, -1, 0};
+int dx2[] = {1, -1, 0, 0, -1, 1, -1, 1};
+int dy2[] = {0, 0, 1, -1, 1, 1, -1, -1};
+
 const int N = 1e5;
 bool visited[N];
 vector <int> adj[N];vector <pair<int,int>> adjw[N];
