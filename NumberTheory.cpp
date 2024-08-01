@@ -70,7 +70,7 @@ bool isprime(int n){
     return 1;
 }
 *----------------------------------------------------------------------*
-bool is_prime(int n) {
+bool is_prime(int n) {// 1246193590755167
     bool all_ones = true;
     int m = (n - 1) / 2;
     for (int test_index = 0; test_index < 50; ++test_index) {
