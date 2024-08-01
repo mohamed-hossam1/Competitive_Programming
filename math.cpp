@@ -11,8 +11,8 @@ int find_d(int a1,int a2){
   return a2-a1;
 }
 *----------------------------------------------------------------------*
-int sum_all_toN (int n) return n = n*(n+1)/2;
-sum_allEven_toN (int n) return  n = (n/2)*((n/2)+1)/2
+int sum_all_toN (int n) {return n = n*(n+1)/2;}
+int sum_allEven_toN (int n) {return  n = (n/2)*((n/2)+1);}
 *----------------------------------------------------------------------*
          متتابعه هندسيه 
       a1 a1*r a1*r*r ------ an   
