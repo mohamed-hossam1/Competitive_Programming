@@ -4,7 +4,7 @@ int dx2[] = {1, -1, 0, 0, -1, 1, -1, 1};
 int dy2[] = {0, 0, 1, -1, 1, 1, -1, -1};
 
 const int N = 1e5;
-bool visited[N];
+bool vis[N];
 vector <int> adj[N];vector <pair<int,int>> adjw[N];
 void dfs(int s) {
     visited[s] = true;
@@ -14,13 +14,16 @@ void dfs(int s) {
     }
 }
 
-void list() {
-    int n,j;
-    cin>>n>>j;
-    int s,d;
-    for(int i = 0;i < j;i++){
+bool cycle(int node, int par, int &count) //count=number of nodes in this cycle ----> cycle(node,-1,count);
+{
+    if(vis[node]) return true;
+    vis[node] = 1;
+    for(auto child_node : adj[node]) if(child_node != par)
     {
-        cin>>s>>d;
-        adj[s].push_back(d);
+        count++;
+        if(cycle(child_node, node, count) == true)
+            return true;
     }
+    return false;
 }
+
