@@ -70,6 +70,32 @@ bool isprime(int n){
     return 1;
 }
 *----------------------------------------------------------------------*
+bool is_prime(int n) {
+    bool all_ones = true;
+    int m = (n - 1) / 2;
+    for (int test_index = 0; test_index < 50; ++test_index) {
+        int a = 1 + rand() % (n - 1);
+        int a_to_the_m = 1;
+        int base = a;
+        int exp = m;
+        int mod = n;
+        while (exp > 0) {
+            if (exp % 2 == 1) {
+                a_to_the_m = (a_to_the_m * base) % mod;
+            }
+            base = (base * base) % mod;
+            exp /= 2;
+        }
+        if (a_to_the_m != 1 && a_to_the_m != n - 1) {
+            return false;
+        }
+        if (a_to_the_m == n - 1) {
+            all_ones = false;
+        }
+    }
+    return !all_ones;
+}
+*----------------------------------------------------------------------*
 vector<bool> sieve(int n){
     vector<bool> prime(n,1);
     prime[0]=prime[1]=0;
