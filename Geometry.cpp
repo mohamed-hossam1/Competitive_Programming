@@ -1,3 +1,7 @@
+const double PI = acos(-1.0);
+
+double toRadians(double degree) {return (degree * PI / 180.0);}
+double toDegree(double radian) {if (radian < 0) radian += 2 * PI; return (radian * 180 / PI);}
 *----------------------------------------------------------------------*
 point
 struct Point {
@@ -9,51 +13,43 @@ struct Point {
     }
 };
 
-double distance(Point a, Point b) {
-    return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
-}
-double cross_product(Point a, Point b) {
-    return a.x * b.y - a.y * b.x;
-}
+double distance(Point a, Point b) {return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));}
+
+double cross_product(Point a, Point b) {return a.x * b.y - a.y * b.x;}
+
+Point midpoint(Point p1, Point p2) {return Point((p1.x + p2.x) / 2, (p1.y + p2.y) / 2);}
+
 double angle_abc(Point a, Point b, Point c) {
     double dx1 = b.x - a.x, dy1 = b.y - a.y;
     double dx2 = c.x - a.x, dy2 = c.y - a.y;
     return acos((dx1 * dx2 + dy1 * dy2) / (sqrt(dx1 * dx1 + dy1 * dy1) * sqrt(dx2 * dx2 + dy2 * dy2)));
 }
-Point move(Point p, Point Mov) {
-    return Point(p.x + t.x, p.y + t.y);
-}
+Point move(Point p, Point Mov) {return Point(p.x + t.x, p.y + t.y);}
 
-Point rotate(Point p, double angle) {
-    return Point(p.x * cos(angle) - p.y * sin(angle), p.x * sin(angle) + p.y * cos(angle));
-}
+Point rotate(Point p, double angle) {return Point(p.x * cos(angle) - p.y * sin(angle), p.x * sin(angle) + p.y * cos(angle));}
+
 Point reflect(Point p, Line l) {
     double d = (p.x * l.a + p.y * l.b + l.c) / (l.a * l.a + l.b * l.b);
     return Point(p.x - 2 * l.a * d, p.y - 2 * l.b * d);
 }
-Point midpoint(Point p1, Point p2) {
-    return Point((p1.x + p2.x) / 2, (p1.y + p2.y) / 2);
-}
 
 *----------------------------------------------------------------------*
 triangle
-  double trianglePerimeter(double a, double b, double c) {
-    return a + b + c;
-}
+    
+double trianglePerimeter(double a, double b, double c) {return a + b + c;}
 
-double triangle_area(Point a, Point b, Point c) {
-    return fabs(cross_product(Point(b.x - a.x, b.y - a.y), Point(c.x - a.x, c.y - a.y)) / 2.0);
-}
+double triangle_area(Point a, Point b, Point c) { return fabs(cross_product(Point(b.x - a.x, b.y - a.y), Point(c.x - a.x, c.y - a.y)) / 2.0);}
+
 double areaOfTriangle(double a, double b, double c) {
     double s = (a + b + c) / 2;
     return sqrt(s * (s - a) * (s - b) * (s - c));
 }
-double angleFromSides(double a, double b, double c) {
-    return acos((pow(b, 2) + pow(c, 2) - pow(a, 2)) / (2 * b * c));
-}
-double sideA(double b, double c, double angleA) {
-    return sqrt(pow(b, 2) + pow(c, 2) - 2 * b * c * cos(angleA));
-}
+
+double fixAngle(double A) {return A > 1 ? 1 : (A < -1 ? -1 : A);}
+double getSide_a_bAB(double b, double A, double B) {return (sin(A) * b) / sin(B);}
+double getAngle_A_abB(double a, double b, double B) {return asin(fixAngle((a * sin(B)) / b));}
+double getAngle_A_abc(double a, double b, double c) {return acos(fixAngle((b * b + c * c - a * a) / (2 * b * c)));}
+
 string classifyTriangleByAngles(double a, double b, double c) {
     double angleA = angleFromSides(a, b, c);
     double angleB = angleFromSides(b, c, a);
@@ -67,6 +63,7 @@ string classifyTriangleByAngles(double a, double b, double c) {
     }
     return "Obtuse";
 }
+
 string classifyTriangleBySides(double a, double b, double c) {
     if (fabs(a - b) < 1e-9 && fabs(b - c) < 1e-9) {
         return "Equilateral";
