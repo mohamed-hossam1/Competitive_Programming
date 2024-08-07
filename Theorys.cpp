@@ -1,5 +1,8 @@
 *----------------------------------------------------------------------*
-A number is divisible by 3 if the sum of its digits is divisible by 3
+N % 3 == 0 if (sum all digits) % 3 == 0 ,N % 4 == 0 if (sum two last digits) % 4 == 0
+N % 5 == 0 if last digit == (5||0) ,N % 6 == 0 if (sum all digits) % 3 == 0 && N is even
+N % 8 == 0 if (sum three last digits) % 8 == 0 , N % 9 == 0 if (sum all digits) % 9 == 0
+N % 11 == 0 if(Add,sub digits in alternating) % 11 == 0
 *----------------------------------------------------------------------*
 the number has odd divisors if sqrt(number) == (int) sqrt(number)
 16 -> 1 2 4 8 16
