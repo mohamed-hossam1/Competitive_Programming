@@ -316,27 +316,3 @@ Point closest_point_on_polygon(Point p, const vector<Point>& polygon) {
     }
     return closest;
 }
-
-2D Prefix Sum
-void solve() {
-    int x, y;
-    cin >> x >> y;    
-    vector<vector<int>> arr(x, vector<int>(y));
-
-    for (int i = 0; i < x; ++i) 
-        for (int j = 0; j < y; ++j) 
-            cin >> arr[i][j];
-    
-    vector<vector<int>> twopre(x + 1, vector<int>(y + 1, 0));    
-    for (int i = 1; i <= x; ++i)
-        for (int j = 1; j <= y; ++j) 
-            twopre[i][j] = arr[i-1][j-1] + twopre[i-1][j] + twopre[i][j-1] - twopre[i-1][j-1];
-
-    int q;
-    cin >> q;
-    while (q--) {
-        int r1, c1, r2, c2;
-        cin >> r1 >> c1 >> r2 >> c2;
-        cout << twopre[r2][c2] - twopre[r1-1][c2] - twopre[r2][c1-1] + twopre[r1-1][c1-1] << endl;
-    }
-}
