@@ -104,3 +104,10 @@ void findSubsets(int nums[], int n)
         cout << endl;
     }
 }
+
+struct compare {
+    bool operator() (const string& a, const string& b) const{
+        return a.size() < b.size();
+    }
+};
+set<string, compare>
