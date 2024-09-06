@@ -76,29 +76,4 @@ double Nth_Root_X(double x, int n) {
     return guess;
 }
 *----------------------------------------------------------------------*
-5/7 = 0.714285 =.0 (714285) ------ 1/6 = 0.1666666 = .1 (6)
-pair<string ,string> result(int a,int b){
-    int result, remainder, index;
-    map<int, int> remainderIndex;
-    vector<int> decimalDigits;
-    index = 0;
-    result = a / b;
-    remainder = a % b;
-    while (!remainderIndex.count(remainder)) {
-        remainderIndex[remainder] = index++;
-        result = remainder * 10 / b;
-        decimalDigits.push_back(result);
-        remainder = (remainder * 10) % b;
 
-    }
-    int cycleStartIndex = remainderIndex[remainder];
-    int nCurDigit = 0;
-    string s1="",s2="";
-    for (; nCurDigit < cycleStartIndex && nCurDigit < 50; nCurDigit++) {
-        s1+= to_string(decimalDigits[nCurDigit]);
-    }
-    for (; nCurDigit < index && nCurDigit < 50; nCurDigit++) {
-        s2+= to_string(decimalDigits[nCurDigit]);
-    }
-    return {s1,s2};
-}
