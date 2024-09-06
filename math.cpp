@@ -31,6 +31,16 @@ int comp_double(double x, double y) {
         return x<y?-1:1;
 }
 *----------------------------------------------------------------------*
+vector<int> v = {2, 3, 5, 7};
+int n = 100;
+int inc_exe(int idx = 0, int d = 1, int sign = -1) {
+    if (idx == v.size()) 
+    if(d==1) return 0;
+    else return sign * n / d;
+
+    else return inc_exe(idx + 1, d,sign) + inc_exe(idx + 1, d * v[idx], sign * - 1);
+}
+*----------------------------------------------------------------------*
 5/7 = 0.714285 =.0 (714285) ------ 1/6 = 0.1666666 = .1 (6)
 pair<string ,string> result(int a,int b){
     int result, remainder, index;
