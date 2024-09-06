@@ -1,4 +1,3 @@
-
 2D Prefix Sum
 void solve() {
     int x, y;
@@ -22,10 +21,8 @@ void solve() {
         cout << twopre[r2][c2] - twopre[r1-1][c2] - twopre[r2][c1-1] + twopre[r1-1][c1-1] << endl;
     }
 }
-
-
+*----------------------------------------------------------------------*
 3D Prefix Sum
-
 void solve() {
     int x, y, z;
     cin >> x >> y >> z;
@@ -39,7 +36,6 @@ void solve() {
             }
         }
     }
-    
     vector<vector<vector<int>>> threepre(x + 1, vector<vector<int>>(y + 1, vector<int>(z + 1, 0)));    
     for (int i = 1; i <= x; ++i) {
         for (int j = 1; j <= y; ++j) {
@@ -71,43 +67,64 @@ void solve() {
              - threepre[x1-1][y1-1][z1-1] << endl;
     }
 }
-
-
-unordered_set<string> st;
-void allsubsequence(string str)
+*----------------------------------------------------------------------*
+void printSubsequence(string input, string output="")//O(n* 2^n)
 {
-    for (int i = 0; i < str.length(); i++)
+    if (input.empty()) {
+        cout << output << endl;
+        return;
+    }
+    printSubsequence(input.substr(1), output + input[0]);
+    printSubsequence(input.substr(1), output);
+}
+*----------------------------------------------------------------------*
+void Subsets(vector<int> v)
+{
+    for (int i = 0; i < (1<<v.size()); i++)
     {
-        for (int j = str.length(); j > i; j--)
+        int k=i;
+        while (k)
         {
-            string sub_str = str.substr(i, j);
-            st.insert(sub_str);
-            
-            for (int k = 1; k < sub_str.length() - 1; k++)
-            {
-                string sb = sub_str;
-                sb.erase(sb.begin() + k);
-                subsequence(sb);
+            if(k%2!=0){
+                cout<<v[i]<<" ";
             }
+            j++;
+            k/=2;
         }
+        cout<<endl;
     }
 }
-
-void findSubsets(int nums[], int n)
-{
-    for (int i = 0; i < (1 << n); i++) {
-        for (int j = 0; j < n; j++) {
-            if ((i & (1 << j)) != 0) {
-                cout << nums[j] << " ";
-            }
-        }
-        cout << endl;
-    }
-}
-
+*----------------------------------------------------------------------*
 struct compare {
     bool operator() (const string& a, const string& b) const{
         return a.size() < b.size();
     }
 };
 set<string, compare>
+*----------------------------------------------------------------------*
+5/7 = 0.714285 =.0 (714285) ------ 1/6 = 0.1666666 = .1 (6)
+pair<string ,string> result(int a,int b){
+    int result, remainder, index;
+    map<int, int> remainderIndex;
+    vector<int> decimalDigits;
+    index = 0;
+    result = a / b;
+    remainder = a % b;
+    while (!remainderIndex.count(remainder)) {
+        remainderIndex[remainder] = index++;
+        result = remainder * 10 / b;
+        decimalDigits.push_back(result);
+        remainder = (remainder * 10) % b;
+
+    }
+    int cycleStartIndex = remainderIndex[remainder];
+    int nCurDigit = 0;
+    string s1="",s2="";
+    for (; nCurDigit < cycleStartIndex && nCurDigit < 50; nCurDigit++) {
+        s1+= to_string(decimalDigits[nCurDigit]);
+    }
+    for (; nCurDigit < index && nCurDigit < 50; nCurDigit++) {
+        s2+= to_string(decimalDigits[nCurDigit]);
+    }
+    return {s1,s2};
+}
