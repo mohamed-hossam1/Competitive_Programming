@@ -4,9 +4,9 @@
 0 1 0    1 1 1    1 1 0
 0 0 0    1 0 1    1 0 1 
 bool Knowbit(ll n,int i){ return (n >> i) & 1; }
-ll Setbit(ll n,int i){return n | (1 << i); }
-ll Resetbit(ll n,int i){return n & ( ~ (1 << i)); }
-ll flip(ll n,int i){return n ^ (1 << i); }
+ll Setbit(ll n,int i){return n | (1LL << i); }
+ll Resetbit(ll n,int i){return n & ( ~ (1LL << i)); }
+ll flip(ll n,int i){return n ^ (1LL << i); }
 bool isPowerOfTwo(int n){if(n==0)return 0; return !(n & (n - 1)); }
 __builtin_popcount(n); //count the number of one’s
 __builtin_ctz(x) //zeros from last to first occurrence of one
