@@ -11,6 +11,7 @@ bool isPowerOfTwo(int n){if(n==0)return 0; return !(n & (n - 1)); }
 __builtin_popcount(n); //count the number of one’s
 __builtin_ctz(x) //zeros from last to first occurrence of one
 __builtin_clz(x) //number of zeros before the first occurrence of one
+__lg(x) //index of most significant bit----->zero base
 bitset<32> a;
 a.count(); // count of ones
 a.to_ullong() //to int
