@@ -31,6 +31,33 @@ void Subsets(vector<int> v) // find all subsets for any array by size ~ 20
     }
 }
 *----------------------------------------------------------------------*
+ string Binarytogray(string s){
+    string ans="";
+    ans+=s[0];
+    for(int i=1;i<s.size();i++){
+        if(s[i-1]==s[i]) ans+='0';
+        else ans+='1';
+
+    }
+    return ans;
+}
+*----------------------------------------------------------------------*
+string graytoBinary(string s)
+{
+    string ans = "";
+    ans += s[0];
+    for (int i = 1; i < s.size(); i++) {
+        if (s[i] == '0') ans += ans[i - 1];
+        else 
+        {
+            if (ans[i - 1] == '0') ans += '1';
+            else ans += '0';
+        }
+    }
+    return ans;
+}
+*----------------------------------------------------------------------*
+
 Theorys
 a^b = c
 c^a = b
