@@ -78,23 +78,6 @@ void printSubsequence(string input, string output="")//O(n* 2^n)
     printSubsequence(input.substr(1), output);
 }
 *----------------------------------------------------------------------*
-void Subsets(vector<int> v)
-{
-    for (int i = 0; i < (1<<v.size()); i++)
-    {
-        int k=i;
-        while (k)
-        {
-            if(k%2!=0){
-                cout<<v[i]<<" ";
-            }
-            j++;
-            k/=2;
-        }
-        cout<<endl;
-    }
-}
-*----------------------------------------------------------------------*
 struct compare {
     bool operator() (const string& a, const string& b) const{
         return a.size() < b.size();
