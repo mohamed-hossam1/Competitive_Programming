@@ -85,6 +85,32 @@ struct compare {
 };
 set<string, compare>
 *----------------------------------------------------------------------*
+int maxSubsetXOR(vector<int> v)
+{
+    int index = 0;
+    for (int i = 32-1; i >= 0; i--)
+    {
+        int maxInd = index;
+        int maxEle = INT_MIN;
+        for (int j = index; j < v.size(); j++)
+        {
+            if ( (v[j] & (1 << i)) != 0 && v[j] > maxEle ) maxEle = v[j], maxInd = j;
+        }
+
+        if (maxEle == INT_MIN)
+        continue;
+        swap(v[index], v[maxInd]);
+        maxInd = index;
+        for (int j=0; j<v.size(); j++) if (j != maxInd &&(v[j] & (1 << i)) != 0)v[j] = v[j] ^ v[maxInd];
+
+        index++;
+    }
+    int res = 0;
+    for (int i = 0; i < v.size(); i++)
+        cout<<v[i]<<" ";
+    return res;
+}
+*----------------------------------------------------------------------*
 5/7 = 0.714285 =.0 (714285) ------ 1/6 = 0.1666666 = .1 (6)
 pair<string ,string> result(int a,int b){
     int result, remainder, index;
