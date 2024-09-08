@@ -111,6 +111,14 @@ int maxSubsetXOR(vector<int> v)
     return res;
 }
 *----------------------------------------------------------------------*
+int xorsubset(vector<int> v) 
+{ 
+    int bits = 0; 
+    for (int i=0; i < v.size(); ++i) bits |= v[i]; 
+    int ans = bits * pow(2, v.size()-1); 
+    return ans; 
+}
+*----------------------------------------------------------------------*
 5/7 = 0.714285 =.0 (714285) ------ 1/6 = 0.1666666 = .1 (6)
 pair<string ,string> result(int a,int b){
     int result, remainder, index;
