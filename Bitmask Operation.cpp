@@ -7,13 +7,12 @@ bool Knowbit(ll n,int i){ return (n >> i) & 1; }
 ll Setbit(ll n,int i){return n | (1LL << i); }
 ll Resetbit(ll n,int i){return n & ( ~ (1LL << i)); }
 ll flip(ll n,int i){return n ^ (1LL << i); }
-bool isPowerOfTwo(int n){if(n==0)return 0; return !(n & (n - 1)); }
+int lowbit(int n){return (n&~(n-1));}
 __builtin_popcount(n); //count the number of one’s
 __builtin_ctz(x) //zeros from last to first occurrence of one
 __builtin_clz(x) //number of zeros before the first occurrence of one
 __lg(x) //index of most significant bit----->zero base
 bitset<32> a;
-a.count(); // count of ones
 a.to_ullong() //to int
 *----------------------------------------------------------------------*
 void Subsets(vector<int> v) // find all subsets for any array by size ~ 20
@@ -57,6 +56,15 @@ string graytoBinary(string s)
     return ans;
 }
 *----------------------------------------------------------------------*
+int BinarytoDecemal(string s){
+    int ans=0;
+    int bin =1;
+    for(int i=s.size()-1;i>=0;i--){
+        ans +=bin*(s[i]-'0');
+        bin *=2; 
+    }
+    return ans;
+}
 
 Theorys
 a^b = c
