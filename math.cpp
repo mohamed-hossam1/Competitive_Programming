@@ -8,6 +8,21 @@ int find_an(int a1,int n,int d){
 int find_d(int a1,int a2){
   return a2-a1;
 }
+int countAPs(int S, int D) //number of Arithmetic Progressions sum S and difference D
+{
+    S = S * 2;
+    int answer = 0;
+    for (int i = 1; i*i <= S; i++) {
+        if (S % i == 0) {
+            if (((S / i) - D * i + D) % 2 == 0)
+                answer++;
+
+            if ((D * i - (S / i) + D) % 2 == 0)
+                answer++;
+        }
+    }
+    return answer;
+}
 *----------------------------------------------------------------------* 
 a1 a1*r a1*r*r ------ an   
 int sum (int ai,int n) {
