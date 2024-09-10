@@ -8,10 +8,10 @@ ll Setbit(ll n,int i){return n | (1LL << i); }
 ll Resetbit(ll n,int i){return n & ( ~ (1LL << i)); }
 ll flip(ll n,int i){return n ^ (1LL << i); }
 int lowbit(int n){return (n&~(n-1));}
+__lg(x) //index of highbit----->zero base
 __builtin_popcount(n); //count the number of one’s
 __builtin_ctz(x) //zeros from last to first occurrence of one
 __builtin_clz(x) //number of zeros before the first occurrence of one
-__lg(x) //index of most significant bit----->zero base
 bitset<32> a;
 a.to_ullong() //to int
 *----------------------------------------------------------------------*
