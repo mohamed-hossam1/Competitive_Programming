@@ -122,27 +122,6 @@ vector<bool> linearSieve(int N)//o(n)
     }
     return isPrime;
 }
-
-vector<vector<int>> primeCombinations(int target) {
-    vector<int> primes = primeCount(target);
-    vector<vector<int>> result;
-    vector<int> combination;
-    function<void(int, int)> dfs = [&](int start, int sum) {
-        if (sum == target) {
-            result.push_back(combination);
-            return;
-        }
-        for (int i = start; i < primes.size(); ++i) {
-            if (sum + primes[i] <= target) {
-                combination.push_back(primes[i]);
-                dfs(i, sum + primes[i]);
-                combination.pop_back();
-            }
-        }
-    };
-    dfs(0, 0);
-    return result;
-}
 *----------------------------------------------------------------------*
 int power(int a,int b){
     if(b==0)return 1;
