@@ -1,46 +1,55 @@
-const int MOD = 1e9 + 7;
-int factorial(int n, int mod = MOD) {
-    int result = 1;
-    for (int i = 2; i <= n; i++) {
-        result = (result * i) % mod;
-    }
-    return result;
-}
-*----------------------------------------------------------------------*
-int power(int a,int b, int mod = MOD) {
+int fact[N];
+int fastpow(int a,int b) {
     int result = 1;
     while (b > 0) {
         if (b % 2 == 1)
-            result = (result * a) % mod;
-        a = (a * a) % mod;
+            result = (result * a) % MOD;
+        a = (a * a) % MOD;
         b /= 2;
     }
     return result;
 }
-*----------------------------------------------------------------------*
-int modInverse(int a, int mod = MOD) {return power(a, mod - 2, mod);}
-*----------------------------------------------------------------------*
-int nCr(int n, int r, int mod = MOD) {
-    return (factorial(n, mod)* modInverse(factorial(r, mod), mod) % mod * modInverse(factorial(n - r, mod), mod) % mod) % mod;
+
+void factorial() {
+    fact[0] = 1;
+    for (int i = 1; i < N; i++) fact[i] = i*fact[i-1] % MOD;
 }
-*----------------------------------------------------------------------*
-int nPr(int n, int r, int mod = MOD) {
-    return (factorial(n, mod) * modInverse(factorial(n - r, mod), mod) % mod) % mod;
+
+int modInverse(int a) {return fastpow(a,MOD-2);}
+
+int nCr(int n, int r) {
+    return (fact[n] * modInverse(fact[r]) % MOD * modInverse(fact[n - r]) % MOD) % MOD;
 }
-*----------------------------------------------------------------------*
-int factorial(int n) {
-   if (n == 0 || n == 1){
-       return 1;
-   }
-   return n * factorial(n - 1);
+
+int nPr(int n, int r) {
+    return (fact[n] * modInverse(fact[n - r])% mod) % mod;
 }
-*----------------------------------------------------------------------*
-int ncr(int n,int r){
-  return factorial(n) / (factorial(r) * factorial(n-r));
-}
-*----------------------------------------------------------------------*
+*----------------------------------------------------------------------* 
 int npr(int n,int r){
-  return factorial(n) / factorial(n-r);
+    int ans =1;
+    for(int i = n-r+1; i<=n; i++) ans*=i;
+    return ans;
+}
+
+int ncr(int n, int r)
+{
+    int ans = 1, rfact = 2;
+    for (int i = n - r + 1; i <= n; i++)
+    {
+        ans *= i;
+        if (ans % rfact == 0 && rfact <= r) ans /= rfact++;
+    }
+    return ans;
+}
+*----------------------------------------------------------------------*
+int pascal[10000][10000];
+void pascalncr()
+{
+    for (int i = 0; i < 10000; i++)
+        pascal[i][0] = pascal[i][i]=1;
+    for (int i = 1; i < 10000; i++)
+        for (int j = 1; j < i; j++)
+            pascal[i][j] = (pascal[i - 1][j] + pascal[i - 1][j - 1])%mod;
 }
 *----------------------------------------------------------------------*
 int arr[4] = {2, 3, 5, 7};//prime
