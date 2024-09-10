@@ -42,16 +42,6 @@ int Fibonacci(int an){return round((pow(gold,6)-pow(1-gold,6))/sqrt(5));}
 *----------------------------------------------------------------------*
 int comp_double(double x, double y) { if(fabs(x-y)<=1e-9)return 0; return x<y?-1:1; }
 *----------------------------------------------------------------------*
-vector<int> v = {2,3,5,7};
-int n = 100;
-int inc_exe(int idx = 0, int d = 1, int sign = -1) {
-    if (idx == v.size()) 
-    if(d==1) return 0;
-    else return sign * n / d;
-
-    else return inc_exe(idx + 1, d,sign) + inc_exe(idx + 1, d * v[idx], sign * - 1);
-}
-*----------------------------------------------------------------------*
 vector<vector<int>> multiplyMatrices(vector<vector<int>>& mat1,vector<vector<int>>& mat2) {
     int rows = mat1.size();
     int cols = mat2[0].size();
