@@ -46,12 +46,12 @@ int ncr(int n, int r)
     return ans;
 }
 *----------------------------------------------------------------------*
-int pascal[10000][10000];
+int pascal[1001][1001];
 void pascalncr()
 {
-    for (int i = 0; i < 10000; i++)
+    for (int i = 0; i < 1000; i++)
         pascal[i][0] = pascal[i][i]=1;
-    for (int i = 1; i < 10000; i++)
+    for (int i = 1; i < 1000; i++)
         for (int j = 1; j < i; j++)
             pascal[i][j] = (pascal[i - 1][j] + pascal[i - 1][j - 1])%mod;
 }
