@@ -1,6 +1,9 @@
 #define PI acos(-1.0)
 #define df(b, a) cout << fixed << setprecision(b) << a << endl; 
 #define point complex<double>
+
+double toRadians(double degree) {return (degree * PI / 180.0);}
+double toDegree(double radian) {if (radian < 0) radian += 2 * PI; return (radian * 180 / PI);}
 vector
 double dot(point a,point b){return (conj(a)*b).real();}
 double cross(point a,point b){return (conj(a)*b).imag();}
