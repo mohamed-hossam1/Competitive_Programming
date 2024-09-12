@@ -22,10 +22,10 @@ double angle_withX(point l){
     return a;
 }
 point rotate(point lp, double angle) {return polar(1.0,angle)*lp;}
-point reflect(point P, point A, point B) //point p over ab 
-{
-    point Pt = P-A; point Bt = B-A; point Pr = Pt/Bt;
-    return conj(Pr)*Bt + A;
+point reflect(point P, point A, point B) {
+    point AP = P - A;
+    point AB = B - A;
+    return conj(AP / AB) * AB + A;
 }
 double areapolygon(vector<point> p){
     double area = 0;
@@ -47,7 +47,7 @@ double getAngle_A1(double a, double b, double angleB) {return asin(fixAngle((a *
 double getAngle_A2(double a, double b, double c) {return acos(fixAngle((b * b + c * c - a * a) / (2 * b * c)));}
 string classifyTriangleByAngles(double a, double b, double c) {
     double angleA = getAngle_A2(a, b, c),angleB = getAngle_A2(b, c, a), angleC = getAngle_A2(c, a, b);
-    if (fabs(angleA - PI / 2) < 1e-9 || fabs(angleB - PI / 2) < 1e-9 || fabs(angleC - M_PI / 2) < 1e-9)return "Right";
+    if (fabs(angleA - PI / 2) < 1e-9 || fabs(angleB - PI / 2) < 1e-9 || fabs(angleC - PI / 2) < 1e-9) return "Right";
     if (angleA < PI / 2 && angleB <PI / 2 && angleC < PI / 2) return "Acute";
     return "Obtuse";
 }
@@ -87,26 +87,20 @@ point circumcenter(const point &a, const point &b, const point &c) {// الخا�
                  (pow(c.X, 2) + pow(c.Y, 2)) * (b.X - a.X)) / D;
     return point(Ux, Uy);
 }
-// Line
-point intersection(point p1, point p2, point p3, point p4) {
-float x1 = p1.X, x2 = p2.X, x3 = p3.X, x4 = p4.X;
-float y1 = p1.Y, y2 = p2.Y, y3 = p3.Y, y4 = p4.Y;
-float d = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
-float pre = (x1*y2 - y1*x2), post = (x3*y4 - y3*x4);
-float a = ( pre * (x3 - x4) - (x1 - x2) * post ) / d;
-float b = ( pre * (y3 - y4) - (y1 - y2) * post ) / d;
-return {a,b};
+Line
+point intersection(point a1, point d1, point a2, point d2) {
+    double d = cross(d1, d2);
+    if (fabs(d) < 1e-9) return {1e18, 1e18}; // الخطان متوازيان
+    return (a2 - a1) * cross(d1, d2) / d + a1;
 }
-double distance_point_to_line(point l1,point l2,point p)
-{
-	point line=(l2.X - l1.X,l2.Y - l1.Y);
-	point ps=(l1.X - p.X,l1.Y - p.Y);
-	int dot = ps.X * line.X + ps.Y * line.Y; 
-	point distance=(ps.X - dot * line.X,ps.Y - dot * line.Y); 
-	double output = sqrt((double)(distance.X * distance.X + distance.Y * distance.Y));
-	return output;
+double distance_point_to_line(point l1, point l2, point p) {
+    return abs(cross(l2 - l1, p - l1)) / abs(l2 - l1);
 }
+
+
 point closest_point_on_line(point p, point l) { //أقرب نقطة على خط إلى نقطة معينة
-    double d = (p.X * l.X + p.Y * l.Y ) / (l.X * l.X + l.Y * l.Y);
-    return point(p.X - l.X * d, p.Y - l.Y * d);
+    point line = l2 - l1;
+    double d = dot(p - l1, line) / norm(line);
+    return l1 + line * d;
+
 }
