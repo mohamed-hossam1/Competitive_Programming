@@ -104,3 +104,36 @@ point closest_point_on_line(point p, point l) { //أقرب نقطة على خط 
     return l1 + line * d;
 
 }
+
+// Graham Scan Algorithm
+bool polar_compare(const point& a, const point& b, const point& ref) {
+    double cross_product = (conj(a - ref) * (b - ref)).imag();
+    if (fabs(cross_product) < 1e-9) {
+        return abs(a - ref) < abs(b - ref);
+    }
+    return cross_product > 0; 
+}
+vector<point> graham_scan(vector<point>& points) {
+    point ref = *min_element(points.begin(), points.end(), [](const point& a, const point& b) {
+        return a.imag() < b.imag() || (a.imag() == b.imag() && a.real() < b.real());
+    });
+
+    sort(points.begin(), points.end(), [&](const point& a, const point& b) {
+        return polar_compare(a, b, ref);
+    });
+    vector<point> hull;
+    for (const point& p : points) {
+        while (hull.size() >= 2) {
+            point top = hull.back();
+            point second_top = hull[hull.size() - 2];
+            if ((conj(top - second_top) * (p - top)).imag() <= 0) {
+                hull.pop_back();
+            } else {
+                break;
+            }
+        }
+        hull.push_back(p);
+    }
+
+    return hull;
+}
