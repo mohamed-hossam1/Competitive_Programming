@@ -10,8 +10,17 @@ double toDegree(double radian) {if (radian < 0) radian += 2 * PI; return (radian
 double dot(point la,point lb){return (conj(la)*lb).X;}
 double cross(point la,point lb){return (conj(la)*lb).Y;}
 double distance(point la) {return abs(la);}
-double angle(point la,point lb){return atan2(cross(la,lb),dot(la,lb));}//la,lb!=lb,la 
-double angle_withX(point la){return atan2(la.X,la.Y);}
+double angle(point l1, point l2) {
+    double a1 = atan2(l1.Y, l1.X)*180/PI,a2 = atan2(l2.Y, l2.X)*180/PI;
+    double a = a2-a1;
+    if(a<0) a+=360;
+    return a;
+}
+double angle_withX(point l){
+    double a = atan2(l.Y, l.X)*180/PI;
+    if(a<0)a+=360;
+    return a;
+}
 point rotate(point lp, double angle) {return polar(1.0,angle)*lp;}
 point reflect(point P, point A, point B) //point p over ab 
 {
@@ -27,6 +36,11 @@ double areapolygon(vector<point> p){
 }
 
 // triangle
+double triangleArea(double a, double b, double c)  
+{   
+    float s = (a + b + c) / 2;  
+    return sqrt(s * (s - a) * (s - b) * (s - c));  
+}
 double fixAngle(double angleA) {return angleA > 1 ? 1 : (angleA < -1 ? -1 : angleA);}
 double getSide_A(double b, double angleA, double angleB) {return (sin(angleA) * b) / sin(angleB);}
 double getAngle_A1(double a, double b, double angleB) {return asin(fixAngle((a * sin(angleB)) / b));}
@@ -37,8 +51,7 @@ string classifyTriangleByAngles(double a, double b, double c) {
     if (angleA < PI / 2 && angleB <PI / 2 && angleC < PI / 2) return "Acute";
     return "Obtuse";
 }
-
-bool is_point_in_triangle(point a, point b, point c, point p) {
+bool point_in_triangle(point a, point b, point c, point p) {
     double area_orig = areapolygon({a, b, c});
     double area1 = areapolygon({p, b, c});
     double area2 = areapolygon({a, p, c});
@@ -47,4 +60,53 @@ bool is_point_in_triangle(point a, point b, point c, point p) {
 }
 point centroid(point a,point b,point c) {
     return (a+b+c)/3.0;
+}
+point orthocenter(const point &a, const point &b, const point &c) {
+    double dx1 = b.X - a.X, dy1 = b.Y - a.Y;
+    double dx2 = c.X - a.X, dy2 = c.Y - a.Y;
+    double dx3 = c.X - b.X, dy3 = c.Y - b.Y;
+    double d1 = dx1 * dy2 - dy1 * dx2;
+    double d2 = dx1 * dx2 + dy1 * dy2;
+    double cx = c.X - (dx1 * dx3 + dy1 * dy3) * dy2 / d2;
+    double cy = c.Y + (dx1 * dx3 + dy1 * dy3) * dx2 / d2;
+    return point(cx, cy);
+}
+
+double inradius(double a, double b, double c) { //نصف قطر الدائرة الداخلية
+    double s = (a + b + c) / 2;
+    double area = triangleArea(a, b, c);
+    return area / s;
+}
+point circumcenter(const point &a, const point &b, const point &c) {// الخارجيه
+    double D = 2 * (a.X * (b.Y - c.Y) + b.X * (c.Y - a.Y) + c.X * (a.Y - b.Y));
+    double Ux = ((pow(a.X, 2) + pow(a.Y, 2)) * (b.Y - c.Y) +
+                 (pow(b.X, 2) + pow(b.Y, 2)) * (c.Y - a.Y) +
+                 (pow(c.X, 2) + pow(c.Y, 2)) * (a.Y - b.Y)) / D;
+    double Uy = ((pow(a.X, 2) + pow(a.Y, 2)) * (c.X - b.X) +
+                 (pow(b.X, 2) + pow(b.Y, 2)) * (a.X - c.X) +
+                 (pow(c.X, 2) + pow(c.Y, 2)) * (b.X - a.X)) / D;
+    return point(Ux, Uy);
+}
+// Line
+point intersection(point p1, point p2, point p3, point p4) {
+float x1 = p1.X, x2 = p2.X, x3 = p3.X, x4 = p4.X;
+float y1 = p1.Y, y2 = p2.Y, y3 = p3.Y, y4 = p4.Y;
+float d = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+float pre = (x1*y2 - y1*x2), post = (x3*y4 - y3*x4);
+float a = ( pre * (x3 - x4) - (x1 - x2) * post ) / d;
+float b = ( pre * (y3 - y4) - (y1 - y2) * post ) / d;
+return {a,b};
+}
+double distance_point_to_line(point l1,point l2,point p)
+{
+	point line=(l2.X - l1.X,l2.Y - l1.Y);
+	point ps=(l1.X - p.X,l1.Y - p.Y);
+	int dot = ps.X * line.X + ps.Y * line.Y; 
+	point distance=(ps.X - dot * line.X,ps.Y - dot * line.Y); 
+	double output = sqrt((double)(distance.X * distance.X + distance.Y * distance.Y));
+	return output;
+}
+point closest_point_on_line(point p, point l) { //أقرب نقطة على خط إلى نقطة معينة
+    double d = (p.X * l.X + p.Y * l.Y ) / (l.X * l.X + l.Y * l.Y);
+    return point(p.X - l.X * d, p.Y - l.Y * d);
 }
