@@ -41,3 +41,4 @@ string multiply(string s1,string s2){
     for (; i>=0; i--) s += to_string(a[i]);
     return s;
 }
+Dr Mostafa Saad code https://ideone.com/upppJ1
