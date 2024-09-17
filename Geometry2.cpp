@@ -1,5 +1,14 @@
 #define PI acos(-1.0)
 #define df(b, a) cout << fixed << setprecision(b) << a << endl; 
+template<class T>
+istream& operator>> (istream& is, complex<T>& p) {
+  T value;
+  is >> value;
+  p.real(value);
+  is >> value;
+  p.imag(value);
+  return is;
+}
 #define point complex<double>
 #define X real()
 #define Y imag()
