@@ -145,3 +145,8 @@ pair<string ,string> result(int a,int b){
     }
     return {s1,s2};
 }
+
+auto sum = [&]() -> int{
+    
+        return ;
+};
