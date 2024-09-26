@@ -1,5 +1,11 @@
 *----------------------------------------------------------------------*
-k-th_is_not_divisible_by_n(int n,int k) return k + (k - 1) / (n - 1);   // n = 3 k = 7 --numbers not divisible by 3 1,2,4,5,7,8,*10*,11,13… 
+k-th_is_not_divisible_by_n(int n,int k) return k + (k - 1) / (n - 1);   // n = 3 k = 7 --numbers not divisible by 3 1,2,4,5,7,8,*10*,11,13…
+*----------------------------------------------------------------------*
+int add(int x,int y,int mid) {return(x % mod + y % mod) % mod;}
+int mul(int x,int y,int mid) {return(x % mod * y % mod) % mod;}
+int sub(int x,int y,int mid) {return(((x % mod - y % mod) % mod) + mod) % mod;}
+int div(int x,int y,int mid) {return(x % mod * powermod(y,mod-2,mod) % mod) % mod;}
+int mod_negative(int x,int m) {return(x%m)+m%m;}
 *----------------------------------------------------------------------*
 vector<int> Divisors(int n){
     vector<int> v;
@@ -123,23 +129,26 @@ vector<bool> linearSieve(int N)//o(n)
     return isPrime;
 }
 *----------------------------------------------------------------------*
-int power(int a,int b){
-    if(b==0)return 1;
-    if(b==1)return a;
-    int ret=1;
-    if(b&1) ret =  a;
-    int x = power(a,b/2);
-    return ret*x*x;
+int power(int base, int exp) {
+    int result = 1;
+    while (exp > 0) {
+        if (exp % 2 == 1)
+            result *= base;
+        base *= base;
+        exp /= 2;
+    }
+    return result;
 }
 *----------------------------------------------------------------------*
 int powermod(int a,int b,int mod){
-    if(b==0)return 1;
-    if(b==1)return a;
-    int ret=1;
-    if(b&1) ret =  a%mod;
-    int x = powermod(a,b/2,mod);
-    ret = ret*x*x;
-    return ret%mod;
+    int result = 1;
+    while (exp > 0) {
+        if (exp % 2 == 1)
+            result = (base%mod*result%mod)%mod;
+        base = (base%mod*base%mod)%mod;
+        exp /= 2;
+    }
+    return result%mod;
 }
 *----------------------------------------------------------------------*
 int phi(int n) { //sum of coprime numbers from 1 to n //sqrt(n)
@@ -164,7 +173,15 @@ void phi_1_to_n(int n) { //nlog(log(n))
             for (int j = i; j <= n; j += i) phi[j] -= phi[j] / i;
 }
 *----------------------------------------------------------------------*
-pair<int,int> euclid(int a,int b,int& x,int& y){  //a*x+b*y=gcd(a,b) return x,y     .........       (a*b)%m=1 and b==x if euclid(a,m);
+math behind enjoy :)
+from bezout a*x+b*y=gcd(a,b)
+from euclidean gcd(a,b)=gcd(b,a%b)
+b*x1+a&b*y1=gcd(a,b)      a%b = a-(a/b)*b
+b*x1+(a-(a/b)*b)*y1=gcd(a,b) 
+a*y1+b(x1-(a/b)*y1)=gcd(a,b)
+x --> y1
+y --> x1-y1*(a/b);
+pair<int,int> extended_euclidean(int a,int b,int& x,int& y){  //a*x+b*y=gcd(a,b) return x,y     .........       (a*b)%m=1 and b==x if euclid(a,m);
     if(b==0){
         x=1;
         y=0;
@@ -211,12 +228,7 @@ bool find_any_solution(int a, int b, int c, int &x0, int &y0, int &g) {  a*x0+b*
     if (b < 0) y0 = -y0;
     return true;
 }
-*----------------------------------------------------------------------*
-int add(int x,int y,int mid) {return(x % mod + y % mod) % mod;}
-int mul(int x,int y,int mid) {return(x % mod * y % mod) % mod;}
-int sub(int x,int y,int mid) {return(((x % mod - y % mod) % mod) + mod) % mod;}
-int div(int x,int y,int mid) {return(x % mod * powermod(y,mod-2,mod) % mod) % mod;}
-int mod_negative(int x,int m) {return(x%m)+m%m;}
+
 *----------------------------------------------------------------------*
 
 
