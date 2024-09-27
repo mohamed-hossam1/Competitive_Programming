@@ -23,7 +23,9 @@ a ^ (mod - 1) % mod = 1         when mod is prime or mod and a are coprime
 *----------------------------------------------------------------------*
 a,b are coprime if gcd(a,b)=1 
 *----------------------------------------------------------------------*
-(p-1)! ≡ p-1 (mod p) if p prime             p^2 − 1 = 24*n   p = prime > 3             2^n − 1 must be prime  
+Wilson’s theorem (p-1)! ≡ p-1 (mod p) if p prime
+*----------------------------------------------------------------------*
+p^2 − 1 = 24*n   p = prime > 3             2^n − 1 must be prime  
 *----------------------------------------------------------------------*
 Perfect Numbers: the sum of its distinct factors = number
 6 ---> 1,2,3 && 1+2+3=6
