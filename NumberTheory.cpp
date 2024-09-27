@@ -129,6 +129,28 @@ vector<bool> linearSieve(int N)//o(n)
     return isPrime;
 }
 *----------------------------------------------------------------------*
+vector<bool> segmentedSieve(long long L, long long R) {
+    // generate all primes up to sqrt(R)
+    long long lim = sqrt(R);
+    vector<bool> mark(lim + 1, false);
+    vector<long long> primes;
+    for (long long i = 2; i <= lim; ++i) {
+        if (!mark[i]) {
+            primes.emplace_back(i);
+            for (long long j = i * i; j <= lim; j += i)
+                mark[j] = true;
+        }
+    }
+
+    vector<bool> isPrime(R - L + 1, true);
+    for (long long i : primes)
+        for (long long j = max(i * i, (L + i - 1) / i * i); j <= R; j += i)
+            isPrime[j - L] = false;
+    if (L == 1)
+        isPrime[0] = false;
+    return isPrime;
+}
+*----------------------------------------------------------------------*
 int pow(int x,int n)
 {
     if(n==0)
@@ -226,5 +248,16 @@ bool find_any_solution(int a, int b, int c, int &x0, int &y0, int &g) {  a*x0+b*
 }
 
 *----------------------------------------------------------------------*
+pair<int, int> Fibonacci (int n) { return fn,fn+1
+    if (n == 0)
+        return {0, 1};
 
+    auto p = fib(n >> 1);
+    int c = p.first * (2 * p.second - p.first);
+    int d = p.first * p.first + p.second * p.second;
+    if (n & 1)
+        return {d, c + d};
+    else
+        return {c, d};
+}
 
