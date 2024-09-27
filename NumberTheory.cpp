@@ -129,26 +129,25 @@ vector<bool> linearSieve(int N)//o(n)
     return isPrime;
 }
 *----------------------------------------------------------------------*
-int power(int base, int exp) {
-    int result = 1;
-    while (exp > 0) {
-        if (exp % 2 == 1)
-            result *= base;
-        base *= base;
-        exp /= 2;
-    }
-    return result;
+int pow(int x,int n)
+{
+    if(n==0)
+        return 1;
+    else if(n%2 == 0)      
+        return pow(x*x,n/2);
+    else                       
+        return x*pow(x*x,(n-1)/2);
 }
 *----------------------------------------------------------------------*
-int powermod(int a,int b,int mod){
-    int result = 1;
-    while (exp > 0) {
-        if (exp % 2 == 1)
-            result = (base%mod*result%mod)%mod;
-        base = (base%mod*base%mod)%mod;
-        exp /= 2;
-    }
-    return result%mod;
+int powmod(int x,int n,int M)
+{
+    if(n==0)
+        return 1;
+    else if(n%2 == 0)        //n is even
+        return powmod((x%M*x%M)%M,n/2,M);
+    else                             //n is odd
+        return (x*powmod((x%M*x%M)%M,(n-1)/2,M))%M;
+
 }
 *----------------------------------------------------------------------*
 int phi(int n) { //sum of coprime numbers from 1 to n //sqrt(n)
@@ -181,16 +180,20 @@ b*x1+(a-(a/b)*b)*y1=gcd(a,b)
 a*y1+b(x1-(a/b)*y1)=gcd(a,b)
 x --> y1
 y --> x1-y1*(a/b);
-pair<int,int> extended_euclidean(int a,int b,int& x,int& y){  //a*x+b*y=gcd(a,b) return x,y     .........       (a*b)%m=1 and b==x if euclid(a,m);
-    if(b==0){
-        x=1;
-        y=0;
-        return {x,y};
+
+int d, x, y;
+void extendedEuclid(int A, int B) {
+    if(B == 0) {
+        d = A;
+        x = 1;
+        y = 0;
     }
-    int x1,y1;
-    euclid(b,a%b,x1,y1);
-    x=y1 , y=x1-y1*(a/b);
-    return {x,y};
+    else {
+        extendedEuclid(B, A%B);
+        int temp = x;
+        x = y;
+        y = temp - (A/B)*y;
+    }
 }
 *----------------------------------------------------------------------*
 int modInverse(int a, int m)
@@ -203,19 +206,12 @@ int modInverse(int a, int m)
     }
 }
 *----------------------------------------------------------------------*
-int gcd(int a, int b, int& x, int& y) {
-    if (b == 0) {
-        x = 1;
-        y = 0;
-        return a;
-    }
-    int x1, y1;
-    int d = gcd(b, a % b, x1, y1);
-    x = y1;
-    y = x1 - y1 * (a / b);
-    return d;
+int modInverseByextended_euclidean(int A, int M)
+{
+    extended_euclidean(A,M);
+    return (x%M+M)%M;   
 }
-
+*----------------------------------------------------------------------*
 bool find_any_solution(int a, int b, int c, int &x0, int &y0, int &g) {  a*x0+b*y0=c return x0,y0
     g = gcd(abs(a), abs(b), x0, y0);
     if (c % g) {
