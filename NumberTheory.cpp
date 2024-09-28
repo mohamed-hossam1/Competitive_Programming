@@ -17,7 +17,7 @@ vector<int> Divisors(int n){
 }
 *----------------------------------------------------------------------*
 vector<int> SumDivisorsForAllNumbers(){
-    vector<ll>divsors(1e6+10,0);
+    vector<int>divsors(1e6+10,0);
     for (int i = 1; i <= (int)1e6; i++) 
 	for (int k = i; k <= (int)1e6; k += i) divsors[k]++;
     return divsors;
@@ -183,7 +183,7 @@ int sumPows(int a, int k) { // Return a^1+a^2+.....a^k	in O(k)
 	return half * (1 + half - sumPows(a, k / 2 -1) );
 }
 *----------------------------------------------------------------------*
-int phi(int n) { //sum of coprime numbers from 1 to n //sqrt(n)
+int phi(int n) { //sqrt(n)
     int result = n;
     for (int i = 2; i * i <= n; i++) {
         if (n % i == 0) {
@@ -229,7 +229,7 @@ void extendedEuclid(int A, int B) {
     }
 }
 *----------------------------------------------------------------------*
-int modInverse(int a, int m)
+int modInverse(int a, int m) // m is prime  
 {
     if (gcd(a, m) != 1)
         return -1;
@@ -239,7 +239,7 @@ int modInverse(int a, int m)
     }
 }
 *----------------------------------------------------------------------*
-int modInverseByextended_euclidean(int A, int M)
+int modInverseByextended_euclidean(int A, int M)   // A,M coprime
 {
     extended_euclidean(A,M);
     return (x%M+M)%M;   
