@@ -19,9 +19,12 @@ gcd(1,n) = 1  lmc(1,n) = n
 gcd(a,b) == min(b,a) when a = k*b         and == 1 if a = k*b (+|-) 1
 gcd(4,4) = gcd(4,8) = gcd(4,12) = 4       gcd(4,3) = gcd(4,5) = gcd(4,11) = 1 
 *----------------------------------------------------------------------*
-a ^ (mod - 1) % mod = 1         when mod is prime or mod and a are coprime
-*----------------------------------------------------------------------*
-a,b are coprime if gcd(a,b)=1 
+if a,m coprime  Q mean phi
+a^(Q(m)) = 1 (mod m) 
+a^(Q(m)-1) = a^-1 (mod m) 
+a^x % m = a^(x%Q(m)) % m
+* a,b are coprime if gcd(a,b)=1 
+* Q(P) = p-1 if p prime
 *----------------------------------------------------------------------*
 Wilson’s theorem (p-1)! ≡ p-1 (mod p) if p prime
 *----------------------------------------------------------------------*
