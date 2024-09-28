@@ -172,6 +172,17 @@ int powmod(int x,int n,int M)
 
 }
 *----------------------------------------------------------------------*
+int sumPows(int a, int k) { // Return a^1+a^2+.....a^k	in O(k)
+	if (k == 0)
+		return 0;
+
+	if (k % 2 == 1)
+		return a * (1 + sumPows(a, k - 1));
+
+	int half = sumPows(a, k / 2);
+	return half * (1 + half - sumPows(a, k / 2 -1) );
+}
+*----------------------------------------------------------------------*
 int phi(int n) { //sum of coprime numbers from 1 to n //sqrt(n)
     int result = n;
     for (int i = 2; i * i <= n; i++) {
