@@ -214,19 +214,21 @@ a*y1+b(x1-(a/b)*y1)=gcd(a,b)
 x --> y1
 y --> x1-y1*(a/b);
 
-int d, x, y;
-void extendedEuclid(int A, int B) {
-    if(B == 0) {
-        d = A;
+int x, y;
+int extendedEuclid(int a, int b) {
+    if (b == 0) {
         x = 1;
         y = 0;
+        return a;
     }
-    else {
-        extendedEuclid(B, A%B);
-        int temp = x;
-        x = y;
-        y = temp - (A/B)*y;
-    }
+    int x1, y1; 
+    int gcd = extendedGCD(b, a % b);
+    x1 = x;
+    y1 = y;
+	
+    x = y1;
+    y = x1 - (a / b) * y1;
+    return gcd;
 }
 *----------------------------------------------------------------------*
 int modInverse(int a, int m) // m is prime  
@@ -245,19 +247,21 @@ int modInverseByextended_euclidean(int A, int M)   // A,M coprime
     return (x%M+M)%M;   
 }
 *----------------------------------------------------------------------*
-bool find_any_solution(int a, int b, int c, int &x0, int &y0, int &g) {  a*x0+b*y0=c return x0,y0
-    g = gcd(abs(a), abs(b), x0, y0);
-    if (c % g) {
-        return false;
+bool solveDiophantine(int a, int b, int c) {
+    int gcd = extendedEuclid(abs(a), abs(b));
+    if (c % gcd != 0) {
+        return false; 
     }
 
-    x0 *= c / g;
-    y0 *= c / g;
-    if (a < 0) x0 = -x0;
-    if (b < 0) y0 = -y0;
-    return true;
-}
+    x *= c / gcd;
+    y *= c / gcd;
 
+    if (a < 0) x = -x;
+    if (b < 0) y = -y;
+    cout << "Particular solution: x = " << x << ", y = " << y << "\n";
+    cout << "General solution: x = " << x << " + k*" << b / gcd << ", y = " << y << " - k*" << a / gcd << "\n";
+    return true; 
+}
 *----------------------------------------------------------------------*
 pair<int, int> Fibonacci (int n) { return fn,fn+1
     if (n == 0)
