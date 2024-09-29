@@ -271,4 +271,12 @@ pair<int, int> Fibonacci (int n) { return fn,fn+1
     else
         return {c, d};
 }
-
+*----------------------------------------------------------------------*
+int Trailing_Zeros(int n){ // number of zeros for n!
+    int ans=0;
+    while(n){
+        n/=5;
+        ans+=n;
+    }
+    return ans;
+}
