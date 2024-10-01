@@ -10,6 +10,9 @@ the number has odd divisors if sqrt(number) == (int) sqrt(number)
 the number has three divisors if sqrt(number) == (int) sqrt(number) && sqrt(number) = prime number 
 49 -> 1 7 49
 *----------------------------------------------------------------------*
+a+b=c a,b,c prime numbers 
+must be a or b = 2 
+*----------------------------------------------------------------------*
 the range for gcd(a,b) 1->min(b,a)
 *----------------------------------------------------------------------*
 gcd(a,b)=gcd(b,a%b)
