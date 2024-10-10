@@ -215,20 +215,17 @@ x --> y1
 y --> x1-y1*(a/b);
 
 int x, y;
-int extendedEuclid(int a, int b) {
+int gcd(int a, int b, int& x, int& y) {
     if (b == 0) {
         x = 1;
         y = 0;
         return a;
     }
-    int x1, y1; 
-    int gcd = extendedGCD(b, a % b);
-    x1 = x;
-    y1 = y;
-	
+    int x1, y1;
+    int d = gcd(b, a % b, x1, y1);
     x = y1;
-    y = x1 - (a / b) * y1;
-    return gcd;
+    y = x1 - y1 * (a / b);
+    return d;
 }
 *----------------------------------------------------------------------*
 int modInverse(int a, int m) // m is prime  
