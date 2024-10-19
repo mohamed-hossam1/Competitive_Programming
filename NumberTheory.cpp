@@ -215,7 +215,7 @@ x --> y1
 y --> x1-y1*(a/b);
 
 int x, y;
-int gcd(int a, int b, int& x, int& y) {
+int Gcd(int a, int b, int& x, int& y) {
     if (b == 0) {
         x = 1;
         y = 0;
@@ -240,12 +240,13 @@ int modInverse(int a, int m) // m is prime
 *----------------------------------------------------------------------*
 int modInverseByextended_euclidean(int A, int M)   // A,M coprime
 {
-    extended_euclidean(A,M);
+    Gcd(A,M);
     return (x%M+M)%M;   
 }
 *----------------------------------------------------------------------*
 bool solveDiophantine(int a, int b, int c) {
-    int gcd = extendedEuclid(abs(a), abs(b));
+    int x=1,y=1;
+    int gcd = Gcd(abs(a), abs(b),x,y);
     if (c % gcd != 0) {
         return false; 
     }
