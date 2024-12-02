@@ -150,3 +150,20 @@ auto sum = [&]() -> int{
     
         return ;
 };
+
+void subsets(vector<int>& v, vector<int>& tmp, int i) {
+    if (i == v.size()) {
+        for (int num : tmp) {
+            cout << num << " ";
+        }
+        cout << endl;
+        return;
+    }
+
+    subsets(v, tmp, i + 1);
+    tmp.push_back(v[i]);
+    subsets(v, tmp, i + 1);
+    tmp.pop_back();
+
+}
+
