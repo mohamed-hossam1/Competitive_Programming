@@ -151,25 +151,28 @@ vector<bool> segmentedSieve(long long L, long long R) {
     return isPrime;
 }
 *----------------------------------------------------------------------*
-int pow(int x,int n)
-{
-    if(n==0)
-        return 1;
-    else if(n%2 == 0)      
-        return pow(x*x,n/2);
-    else                       
-        return x*pow(x*x,(n-1)/2);
+int power(int N,int M) {
+    if (M == 0) return 1;
+    
+    int half = power(N, M / 2);
+
+    half = half * half; 
+    
+    if (M % 2 == 1) half = (half * N);
+    
+    return half;
 }
 *----------------------------------------------------------------------*
-int powmod(int x,int n,int M)
-{
-    if(n==0)
-        return 1;
-    else if(n%2 == 0)        //n is even
-        return powmod((x%M*x%M)%M,n/2,M);
-    else                             //n is odd
-        return (x*powmod((x%M*x%M)%M,(n-1)/2,M))%M;
+int power(int N,int M,int MOD) {
+    if (M == 0) return 1;
+    
+    int half = power(N, M / 2,MOD);
 
+    half = ((half% MOD) * (half% MOD)) % MOD; 
+    
+    if (M % 2 == 1) half = (half * (N% MOD)) % MOD;
+    
+    return half% MOD;
 }
 *----------------------------------------------------------------------*
 int sumPows(int a, int k) { // Return a^1+a^2+.....a^k	in O(k)
