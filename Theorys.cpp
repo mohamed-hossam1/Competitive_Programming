@@ -1,3 +1,4 @@
+Sum of all subsequences of an array = sum of array * 2^(n-1) 
 *----------------------------------------------------------------------*
 N % 3 == 0 if (sum all digits) % 3 == 0 ,N % 4 == 0 if (last two digits) % 4 == 0
 N % 5 == 0 if last digit == (5||0) ,N % 6 == 0 if (sum all digits) % 3 == 0 && N is even
