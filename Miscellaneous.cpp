@@ -68,10 +68,19 @@ void solve() {
     }
 }
 *----------------------------------------------------------------------*
-do {
-        for (auto i: v) cout << i << " ";
-        cout << endl;
-    } while (next_permutation(v.begin(), v.end()));
+vector<vector<int>> res;
+void permutations(vector<int> v, int idx) {
+  
+    if (idx == v.size()) {
+        res.push_back(v);
+        return;
+    }
+    for (int i = idx; i < v.size(); i++) {
+        swap(v[idx], v[i]);
+        permutations(v, idx + 1);
+        swap(v[idx], v[i]);
+    }
+}
 *----------------------------------------------------------------------*
 struct compare {
     bool operator() (const string& a, const string& b) const{
