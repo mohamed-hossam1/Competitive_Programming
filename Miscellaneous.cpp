@@ -68,15 +68,10 @@ void solve() {
     }
 }
 *----------------------------------------------------------------------*
-void printSubsequence(string input, string output="")//O(n* 2^n)
-{
-    if (input.empty()) {
-        cout << output << endl;
-        return;
-    }
-    printSubsequence(input.substr(1), output + input[0]);
-    printSubsequence(input.substr(1), output);
-}
+do {
+        for (auto i: v) cout << i << " ";
+        cout << endl;
+    } while (next_permutation(v.begin(), v.end()));
 *----------------------------------------------------------------------*
 struct compare {
     bool operator() (const string& a, const string& b) const{
@@ -150,7 +145,7 @@ auto sum = [&]() -> int{
     
         return ;
 };
-
+*----------------------------------------------------------------------*
 void subsets(vector<int>& v, vector<int>& tmp, int i) {
     if (i == v.size()) {
         for (int num : tmp) {
