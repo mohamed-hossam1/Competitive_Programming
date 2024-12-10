@@ -6,7 +6,6 @@ int mul(int x,int y,int mid) {return(x % mod * y % mod) % mod;}
 int sub(int x,int y,int mid) {return(((x % mod - y % mod) % mod) + mod) % mod;}
 int div(int x,int y,int mid) {return(x % mod * powermod(y,mod-2,mod) % mod) % mod;}
 int mod_negative(int x,int m) {return(x%m)+m%m;}
-*----------------------------------------------------------------------*
 int mul(int x, int y, int m) {
     if (x < y) return productm(y, x, m);
     if (y == 0) return 0;
