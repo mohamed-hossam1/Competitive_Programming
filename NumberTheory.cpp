@@ -39,7 +39,7 @@ vector<int> primeFactors(int n) {
     return v;
 }
 *----------------------------------------------------------------------*
-vector<int> primeCount(int maxN) {
+vector<int> primeCount(int maxN) { //number of primes in n
     vector<int> count(maxN + 1, 0);
     vector<bool> prime(maxN + 1, true);
     prime[0] = prime[1] = false;
