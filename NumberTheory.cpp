@@ -17,8 +17,8 @@ vector<int> Divisors(int n){
 }
 *----------------------------------------------------------------------*
 vector<int> SumDivisorsForAllNumbers(){
-    vector<int>divsors(1e6+10,0);
-    for (int i = 1; i <= (int)1e6; i++) 
+    vector<int>divsors(1e6+10,1);
+    for (int i = 2; i <= (int)1e6; i++) 
 	for (int k = i; k <= (int)1e6; k += i) divsors[k]++;
     return divsors;
 }
