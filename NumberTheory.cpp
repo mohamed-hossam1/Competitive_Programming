@@ -211,7 +211,7 @@ void phi_1_to_n(int n) { //nlog(log(n))
 math behind enjoy :)
 from bezout a*x+b*y=gcd(a,b)
 from euclidean gcd(a,b)=gcd(b,a%b)
-b*x1+a&b*y1=gcd(a,b)      a%b = a-(a/b)*b
+b*x1+a%b*y1=gcd(a,b)      a%b = a-(a/b)*b
 b*x1+(a-(a/b)*b)*y1=gcd(a,b) 
 a*y1+b(x1-(a/b)*y1)=gcd(a,b)
 x --> y1
