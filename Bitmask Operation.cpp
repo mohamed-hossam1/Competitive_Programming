@@ -15,19 +15,21 @@ __builtin_clz(x) //number of zeros before the first occurrence of one
 bitset<32> a;
 a.to_ullong() //to int
 *----------------------------------------------------------------------*
-void Subsets(vector<int> v) // find all subsets for any array by size ~ 20
-{
-    for (int i = 0; i < (1<<v.size()); i++){   
-        int k=i;
-        while (k)
-        {
-            if(k%2!=0){
-                cout<<v[i]<<" ";
+vector<vector<int>> get_all_subsets(const vector<int>& arr) {
+    int n = arr.size();
+    vector<vector<int>> subsets;
+    
+    for (int i = 0; i < (1LL << n); i++) { 
+        vector<int> subset;
+        for (int j = 0; j < n; j++) {
+            if (i & (1LL << j)) { 
+                subset.push_back(arr[j]);
             }
-            j++,k/=2;
         }
-        cout<<endl;
+        subsets.push_back(subset);
     }
+    
+    return subsets;
 }
 *----------------------------------------------------------------------*
  string Binarytogray(string s){
