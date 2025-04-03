@@ -28,7 +28,7 @@ a1 a1*r a1*r*r ------ an
 int sum (int ai,int n) {
   return a1*(1-pow(r,n))/(1-r);
 }
-int find_an(int a1,int n,int d){
+int find_an(int a1,int n,int r){
   return a1 * pow(r,(n-1));
 }
 int find_r(int a1,int a2){
