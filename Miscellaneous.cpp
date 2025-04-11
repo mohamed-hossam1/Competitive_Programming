@@ -1,4 +1,4 @@
-2D Prefix Sum
+2D Prefix Sum //arr is zero bias and twopre one bias
 void solve() {
     int x, y;
     cin >> x >> y;    
@@ -11,8 +11,7 @@ void solve() {
     vector<vector<int>> twopre(x + 1, vector<int>(y + 1, 0));    
     for (int i = 1; i <= x; ++i)
         for (int j = 1; j <= y; ++j) 
-            twopre[i][j] = arr[i-1][j-1] + twopre[i-1][j] + twopre[i][j-1] - twopre[i-1][j-1];//if arr is zero bias
-
+            twopre[i][j] = arr[i-1][j-1] + twopre[i-1][j] + twopre[i][j-1] - twopre[i-1][j-1];
     int q;
     cin >> q;
     while (q--) {
